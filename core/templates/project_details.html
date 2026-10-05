@@ -1,0 +1,48 @@
+{% extends 'Base.html' %}
+
+{% block title %}{{ project.project_name }} - Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Project Details: {{ project.project_name }}</h2>
+    <hr>
+
+    <div class="card p-4 shadow-sm mb-4">
+        <p><strong>Project Name:</strong> {{ project.project_name }}</p>
+        <p><strong>Client Name:</strong> {{ project.client_name }}</p>
+        <p><strong>Description:</strong> {{ project.description }}</p>
+        <p><strong>Start Date:</strong> {{ project.start_date }}</p>
+        <p><strong>End Date:</strong> {{ project.end_date|default:"Ongoing" }}</p>
+        <p><strong>Status:</strong> 
+            {% if project.status == 'Completed' %}
+                <span class="badge bg-success">{{ project.status }}</span>
+            {% elif project.status == 'In Progress' %}
+                <span class="badge bg-warning text-dark">{{ project.status }}</span>
+            {% else %}
+                <span class="badge bg-secondary">{{ project.status }}</span>
+            {% endif %}
+        </p>
+        <p><strong>Project Manager:</strong> 
+            {% if project.project_manager %}
+                <a href="{% url 'employee_detail' project.project_manager.id %}">{{ project.project_manager.name }}</a>
+            {% else %}
+                <span class="text-muted">No Manager Assigned</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Assigned Employees (ManyToManyField traversal) -->
+    <div class="card p-4 shadow-sm mb-4">
+        <h4>Assigned Employees</h4>
+        <ul>
+            {% for employee in project.employees.all %}
+                <li><a href="{% url 'employee_detail' employee.id %}">{{ employee.name }}</a> ({{ employee.designation }})</li>
+            {% empty %}
+                <li>No employees assigned to this project yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="{% url 'project_list' %}" class="btn btn-secondary">Back to Project List</a>
+</div>
+{% endblock %}

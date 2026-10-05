@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<p>Total Employees: {{ employee_count }}</p>
+<p>Active Employees: {{active_employee_count }}</p>
+<p>Total Projects: {{ project_count }}</p>
+<p>Completed Projects: {{ completed_project_count }}</p>
+
+{% endblock %}

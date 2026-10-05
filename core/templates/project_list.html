@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Projects
+{% endblock %}
+
+{% block content %}
+
+<h2>Project List</h2>
+
+{% for project in projects %}
+
+    <h3>
+        <a href="{% url 'project_detail' project.id %}">
+            {{ project.project_name }}
+        </a>
+    </h3>
+
+    <p><strong>Client:</strong> {{ project.client_name }}</p>
+    <p><strong>Status:</strong> {{ project.status }}</p>
+    <p><strong>Project Manager:</strong> {{ project.project_manager }}</p>
+
+    <hr>
+
+{% empty %}
+
+    <p>No projects found.</p>
+
+{% endfor %}
+
+{% endblock %}

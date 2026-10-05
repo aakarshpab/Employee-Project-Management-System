@@ -1,0 +1,54 @@
+{% extends 'Base.html' %}
+
+{% block title %}{{ employee.name }} - Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Employee Details: {{ employee.name }}</h2>
+    <hr>
+
+    <div class="card p-4 shadow-sm mb-4">
+        <p><strong>Employee ID:</strong> {{ employee.employee_id }}</p>
+        <p><strong>Name:</strong> {{ employee.name }}</p>
+        <p><strong>Email:</strong> {{ employee.email }}</p>
+        <p><strong>Phone:</strong> {{ employee.phone }}</p>
+        <p><strong>Department:</strong> {{ employee.department }}</p>
+        <p><strong>Designation:</strong> {{ employee.designation }}</p>
+        <p><strong>Date of Joining:</strong> {{ employee.date_of_joining }}</p>
+        <p><strong>Salary:</strong> ${{ employee.salary }}</p>
+        <p><strong>Status:</strong> 
+            {% if employee.is_active %}
+                <span class="badge bg-success">Active</span>
+            {% else %}
+                <span class="badge bg-secondary">Inactive</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Assigned Projects (ManyToManyField reverse relation) -->
+    <div class="card p-4 shadow-sm mb-4">
+        <h4>Assigned Projects</h4>
+        <ul>
+            {% for project in employee.projects.all %}
+                <li><a href="{% url 'project_detail' project.id %}">{{ project.project_name }}</a> (Status: {{ project.status }})</li>
+            {% empty %}
+                <li>No projects assigned to this employee.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Managed Projects (ForeignKey reverse relation via related_name) -->
+    <div class="card p-4 shadow-sm mb-4">
+        <h4>Managed Projects</h4>
+        <ul>
+            {% for project in employee.managed_projects.all %}
+                <li><a href="{% url 'project_detail' project.id %}">{{ project.project_name }}</a> (Status: {{ project.status }})</li>
+            {% empty %}
+                <li>This employee does not manage any projects.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="{% url 'employee_list' %}" class="btn btn-secondary">Back to Employee List</a>
+</div>
+{% endblock %}
