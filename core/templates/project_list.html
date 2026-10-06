@@ -5,27 +5,170 @@ Projects
 {% endblock %}
 
 {% block content %}
+<div class="project-container">
+    
+    <div class="page-header">
+        <h2>Project List</h2>
+    </div>
 
-<h2>Project List</h2>
+    <div class="project-grid">
+        {% for project in projects %}
+            <div class="project-card">
+                <div class="project-card-header">
+                    <h3>
+                        <a href="{% url 'project_detail' project.id %}" class="project-link">
+                            {{ project.project_name }}
+                        </a>
+                    </h3>
+                    <span class="badge">{{ project.status }}</span>
+                </div>
 
-{% for project in projects %}
+                <div class="project-card-body">
+                    <div class="info-item">
+                        <span class="label">Client</span>
+                        <span class="value">{{ project.client_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Project Manager</span>
+                        <span class="value">{{ project.project_manager }}</span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="empty-state-card">
+                <p class="empty-state">No projects found.</p>
+            </div>
+        {% endfor %}
+    </div>
 
-    <h3>
-        <a href="{% url 'project_detail' project.id %}">
-            {{ project.project_name }}
-        </a>
-    </h3>
+</div>
 
-    <p><strong>Client:</strong> {{ project.client_name }}</p>
-    <p><strong>Status:</strong> {{ project.status }}</p>
-    <p><strong>Project Manager:</strong> {{ project.project_manager }}</p>
+<style>
+    /* Fluid container spanning the full screen width */
+    .project-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 2.5rem 3rem;
+        box-sizing: border-box;
+        background-color: #f8fafc;
+        min-height: calc(100vh - 60px);
+    }
 
-    <hr>
+    .page-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #0f172a;
+        letter-spacing: -0.025em;
+    }
 
-{% empty %}
+    /* Fluid grid using auto-fill to seamlessly fill available space */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        width: 100%;
+    }
 
-    <p>No projects found.</p>
+    .project-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
 
-{% endfor %}
+    .project-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        border-color: #cbd5e1;
+    }
 
+    .project-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 0.875rem;
+    }
+
+    .project-card-header h3 {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+
+    .project-link {
+        color: #4f46e5;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.15s ease;
+    }
+
+    .project-link:hover {
+        color: #4338ca;
+        text-decoration: underline;
+    }
+
+    .project-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .info-item .label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .info-item .value {
+        font-size: 0.95rem;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        background-color: #eef2ff;
+        color: #4f46e5;
+        white-space: nowrap;
+        border: 1px solid #e0e7ff;
+    }
+
+    .empty-state-card {
+        grid-column: 1 / -1;
+        background-color: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 0.75rem;
+        padding: 3.5rem;
+        text-align: center;
+    }
+
+    .empty-state {
+        color: #64748b;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+</style>
 {% endblock %}

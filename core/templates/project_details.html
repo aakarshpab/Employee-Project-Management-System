@@ -3,46 +3,312 @@
 {% block title %}{{ project.project_name }} - Details{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Project Details: {{ project.project_name }}</h2>
-    <hr>
-
-    <div class="card p-4 shadow-sm mb-4">
-        <p><strong>Project Name:</strong> {{ project.project_name }}</p>
-        <p><strong>Client Name:</strong> {{ project.client_name }}</p>
-        <p><strong>Description:</strong> {{ project.description }}</p>
-        <p><strong>Start Date:</strong> {{ project.start_date }}</p>
-        <p><strong>End Date:</strong> {{ project.end_date|default:"Ongoing" }}</p>
-        <p><strong>Status:</strong> 
-            {% if project.status == 'Completed' %}
-                <span class="badge bg-success">{{ project.status }}</span>
-            {% elif project.status == 'In Progress' %}
-                <span class="badge bg-warning text-dark">{{ project.status }}</span>
-            {% else %}
-                <span class="badge bg-secondary">{{ project.status }}</span>
-            {% endif %}
-        </p>
-        <p><strong>Project Manager:</strong> 
-            {% if project.project_manager %}
-                <a href="{% url 'employee_detail' project.project_manager.id %}">{{ project.project_manager.name }}</a>
-            {% else %}
-                <span class="text-muted">No Manager Assigned</span>
-            {% endif %}
-        </p>
+<div class="detail-container">
+    
+    <div class="page-header">
+        <h2>Project Details: <span class="highlight-title">{{ project.project_name }}</span></h2>
     </div>
 
-    <!-- Assigned Employees (ManyToManyField traversal) -->
-    <div class="card p-4 shadow-sm mb-4">
-        <h4>Assigned Employees</h4>
-        <ul>
-            {% for employee in project.employees.all %}
-                <li><a href="{% url 'employee_detail' employee.id %}">{{ employee.name }}</a> ({{ employee.designation }})</li>
-            {% empty %}
-                <li>No employees assigned to this project yet.</li>
-            {% endfor %}
-        </ul>
+    <!-- Dashboard Grid to Fill Widescreen Space -->
+    <div class="dashboard-grid">
+        
+        <!-- Main Project Info Card -->
+        <div class="detail-card main-card">
+            <h3>Overview Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Project Name</span>
+                    <span class="value">{{ project.project_name }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Client Name</span>
+                    <span class="value">{{ project.client_name }}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="label">Description</span>
+                    <span class="value description-text">{{ project.description }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Start Date</span>
+                    <span class="value">{{ project.start_date }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">End Date</span>
+                    <span class="value">{{ project.end_date|default:"Ongoing" }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Status</span>
+                    <span class="value">
+                        {% if project.status == 'Completed' %}
+                            <span class="badge badge-success">{{ project.status }}</span>
+                        {% elif project.status == 'In Progress' %}
+                            <span class="badge badge-warning">{{ project.status }}</span>
+                        {% else %}
+                            <span class="badge badge-secondary">{{ project.status }}</span>
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Project Manager</span>
+                    <span class="value">
+                        {% if project.project_manager %}
+                            <a href="{% url 'employee_detail' project.project_manager.id %}" class="employee-link">{{ project.project_manager.name }}</a>
+                        {% else %}
+                            <span class="text-muted">No Manager Assigned</span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assigned Employees Card -->
+        <div class="detail-card employee-card-container">
+            <h3>Assigned Employees</h3>
+            <ul class="employee-list-detail">
+                {% for employee in project.employees.all %}
+                    <li>
+                        <div class="employee-info">
+                            <a href="{% url 'employee_detail' employee.id %}" class="employee-link">{{ employee.name }}</a>
+                            <span class="employee-designation">{{ employee.designation }}</span>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="empty-list">No employees assigned to this project yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
     </div>
 
-    <a href="{% url 'project_list' %}" class="btn btn-secondary">Back to Project List</a>
+    <div class="action-footer">
+        <a href="{% url 'project_list' %}" class="btn btn-secondary">← Back to Project List</a>
+    </div>
+
 </div>
+
+<style>
+    /* Fluid container spanning the full screen width */
+    .detail-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 2.5rem 3rem;
+        box-sizing: border-box;
+        background-color: #f8fafc;
+        min-height: calc(100vh - 60px);
+    }
+
+    .page-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #0f172a;
+        letter-spacing: -0.025em;
+    }
+
+    .highlight-title {
+        color: #4f46e5;
+    }
+
+    /* Modern Dashboard Grid Layout */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+        width: 100%;
+        align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .detail-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.75rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    .detail-card h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-top: 0;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* Info Grid Layout inside Card */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .info-item.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .info-item .label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .info-item .value {
+        font-size: 0.95rem;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .description-text {
+        line-height: 1.6;
+        color: #475569;
+    }
+
+    /* Employee List Styling */
+    .employee-list-detail {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .employee-list-detail li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f8fafc;
+        padding: 0.875rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+        transition: border-color 0.15s ease;
+    }
+
+    .employee-list-detail li:hover {
+        border-color: #cbd5e1;
+    }
+
+    .employee-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .employee-link {
+        color: #4f46e5;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .employee-link:hover {
+        text-decoration: underline;
+        color: #4338ca;
+    }
+
+    .employee-designation {
+        font-size: 0.75rem;
+        color: #64748b;
+        background-color: #ffffff;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9999px;
+        border: 1px solid #cbd5e1;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .empty-list {
+        background-color: transparent !important;
+        border: none !important;
+        color: #64748b;
+        font-style: italic;
+        padding: 1rem 0 !important;
+        text-align: center;
+    }
+
+    .text-muted {
+        color: #94a3b8;
+        font-style: italic;
+    }
+
+    /* Badges */
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+    }
+
+    .badge-success {
+        background-color: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    .badge-warning {
+        background-color: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+    }
+
+    .badge-secondary {
+        background-color: #f1f5f9;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+    }
+
+    /* Action Footer */
+    .action-footer {
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.625rem 1.25rem;
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-secondary {
+        background-color: #ffffff;
+        color: #475569;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-secondary:hover {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        border-color: #94a3b8;
+    }
+</style>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Employee, Project
-
+from django.db.models import Q
 
 def home(request):
     employee_count = Employee.objects.count()
@@ -22,8 +22,18 @@ def home(request):
 def employee_list(request):
     employees = Employee.objects.all()
 
+    # Get filter and search parameters from the URL
     department = request.GET.get('department')
+    search_query = request.GET.get('q', '')  # Grab what the user typed in the search bar
 
+    # 2. Filter by Name or Employee ID if a search query exists
+    if search_query:
+        employees = employees.filter(
+            Q(employee_id__icontains=search_query) | 
+            Q(name__icontains=search_query)
+        )
+
+    # 3. Filter by department if selected
     if department:
         employees = employees.filter(department=department)
 
@@ -35,6 +45,7 @@ def employee_list(request):
         'employees': employees,
         'departments': departments,
         'selected_department': department,
+        'search_query': search_query,  # Pass this back so the input keeps its text
     }
 
     return render(request, 'employee_list.html', context)
@@ -68,3 +79,5 @@ def project_detail(request, id):
     }
 
     return render(request, 'project_details.html', context)
+
+
