@@ -5,12 +5,78 @@ Home
 {% endblock %}
 
 {% block content %}
+<div class="dashboard-container">
+    <h2>Dashboard</h2>
 
-<h2>Dashboard</h2>
+    <div class="dashboard-grid">
+        <div class="stat-card">
+            <span class="label">Total Employees</span>
+            <span class="value">{{ employee_count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Active Employees</span>
+            <span class="value">{{ active_employee_count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Total Projects</span>
+            <span class="value">{{ project_count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Completed Projects</span>
+            <span class="value">{{ completed_project_count }}</span>
+        </div>
+    </div>
+</div>
 
-<p>Total Employees: {{ employee_count }}</p>
-<p>Active Employees: {{active_employee_count }}</p>
-<p>Total Projects: {{ project_count }}</p>
-<p>Completed Projects: {{ completed_project_count }}</p>
+<style>
+    .dashboard-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+    }
 
+    .dashboard-container h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #1e293b;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .stat-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card .label {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-card .value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #4f46e5;
+    }
+</style>
 {% endblock %}
