@@ -94,7 +94,7 @@
                     <tr>
                         <td colspan="9" class="empty-state">
                             <div class="empty-content">
-                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0-00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path></svg>
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path></svg>
                                 <p>No employees found matching your criteria.</p>
                             </div>
                         </td>
@@ -144,20 +144,20 @@
         font-size: 1.75rem;
         font-weight: 700;
         margin: 0 0 0.25rem 0;
-        color: #0f172a;
+        color: var(--text-main);
         letter-spacing: -0.025em;
     }
 
     .page-header .subtitle {
         margin: 0;
         font-size: 0.925rem;
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     /* Filter Card Styling */
     .filter-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
         border-radius: 0.75rem;
         padding: 1.5rem;
         margin-bottom: 1.75rem;
@@ -182,26 +182,26 @@
     .form-group label {
         font-size: 0.75rem;
         font-weight: 700;
-        color: #475569;
+        color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
 
     .form-input, .form-select {
         padding: 0.625rem 0.875rem;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--border-color);
         border-radius: 0.5rem;
-        background-color: #f8fafc;
-        color: #1e293b;
+        background-color: var(--bg-color);
+        color: var(--text-main);
         font-size: 0.925rem;
         outline: none;
         transition: all 0.2s ease;
     }
 
     .form-input:focus, .form-select:focus {
-        border-color: #4f46e5;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
-        background-color: #ffffff;
+        border-color: #483d8b;
+        box-shadow: 0 0 0 3px rgba(72, 61, 139, 0.12);
+        background-color: var(--card-bg);
     }
 
     .form-actions {
@@ -227,30 +227,30 @@
     }
 
     .btn-primary {
-        background-color: #4f46e5;
+        background-color: #483d8b;
         color: #ffffff;
     }
 
     .btn-primary:hover {
-        background-color: #4338ca;
+        background-color: #372f6b;
     }
 
     .btn-secondary {
-        background-color: #ffffff;
-        color: #475569;
-        border-color: #cbd5e1;
+        background-color: var(--card-bg);
+        color: var(--text-muted);
+        border-color: var(--border-color);
     }
 
     .btn-secondary:hover {
         background-color: #f1f5f9;
-        color: #0f172a;
+        color: var(--text-main);
         border-color: #94a3b8;
     }
 
     /* Table Card Layout */
     .table-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
         border-radius: 0.75rem;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
         overflow: hidden;
@@ -269,20 +269,20 @@
     }
 
     .data-table th {
-        background-color: #f8fafc;
-        color: #475569;
+        background-color: var(--bg-color);
+        color: var(--text-muted);
         font-weight: 700;
         text-transform: uppercase;
         font-size: 0.7rem;
         letter-spacing: 0.07em;
         padding: 1rem 1.25rem;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .data-table td {
         padding: 1rem 1.25rem;
         border-bottom: 1px solid #f1f5f9;
-        color: #1e293b;
+        color: var(--text-main);
         white-space: nowrap;
     }
 
@@ -295,7 +295,7 @@
     }
 
     .data-table tbody tr:hover {
-        background-color: #f8fafc;
+        background-color: var(--bg-color);
     }
 
     /* Pagination Footer Styling */
@@ -304,15 +304,15 @@
         justify-content: space-between;
         align-items: center;
         padding: 1rem 1.5rem;
-        background-color: #f8fafc;
-        border-top: 1px solid #e2e8f0;
+        background-color: var(--bg-color);
+        border-top: 1px solid var(--border-color);
         flex-wrap: wrap;
         gap: 1rem;
     }
 
     .pagination-info {
         font-size: 0.875rem;
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     .pagination-controls {
@@ -323,11 +323,11 @@
 
     .page-btn {
         padding: 0.375rem 0.75rem;
-        background-color: #ffffff;
-        border: 1px solid #cbd5e1;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
         border-radius: 0.375rem;
         font-size: 0.875rem;
-        color: #334155;
+        color: var(--text-main);
         text-decoration: none;
         transition: all 0.15s ease;
     }
@@ -335,13 +335,13 @@
     .page-btn:hover {
         background-color: #f1f5f9;
         border-color: #94a3b8;
-        color: #0f172a;
+        color: var(--text-main);
     }
 
     .page-current {
         padding: 0.375rem 0.75rem;
-        background-color: #4f46e5;
-        border: 1px solid #4f46e5;
+        background-color: #483d8b;
+        border: 1px solid #483d8b;
         border-radius: 0.375rem;
         font-size: 0.875rem;
         color: #ffffff;
@@ -350,19 +350,19 @@
 
     /* Utilities & Components */
     .employee-link {
-        color: #4f46e5;
+        color: #483d8b;
         font-weight: 600;
         text-decoration: none;
         transition: color 0.15s ease;
     }
 
     .employee-link:hover {
-        color: #4338ca;
+        color: #372f6b;
         text-decoration: underline;
     }
 
     .text-muted {
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     .id-badge {
@@ -371,8 +371,8 @@
         padding: 0.2rem 0.5rem;
         border-radius: 0.375rem;
         font-size: 0.8rem;
-        color: #475569;
-        border: 1px solid #e2e8f0;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
         font-weight: 600;
     }
 
@@ -399,8 +399,8 @@
 
     .badge-inactive {
         background-color: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
     }
 
     /* Empty State */
@@ -414,7 +414,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0.75rem;
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     .empty-content svg {

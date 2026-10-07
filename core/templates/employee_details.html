@@ -112,7 +112,7 @@
         margin: 0;
         padding: 2.5rem 3rem;
         box-sizing: border-box;
-        background-color: #f8fafc;
+        background-color: var(--bg-color);
         min-height: calc(100vh - 60px);
     }
 
@@ -120,12 +120,12 @@
         font-size: 1.75rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
-        color: #0f172a;
+        color: var(--text-main);
         letter-spacing: -0.025em;
     }
 
     .highlight-title {
-        color: #4f46e5;
+        color: #483d8b;
     }
 
     /* Modern Dashboard Grid Layout */
@@ -150,8 +150,8 @@
     }
 
     .detail-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
         border-radius: 0.75rem;
         padding: 1.75rem;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
@@ -160,11 +160,11 @@
     .detail-card h3 {
         font-size: 1.15rem;
         font-weight: 600;
-        color: #1e293b;
+        color: var(--text-main);
         margin-top: 0;
         margin-bottom: 1.25rem;
         padding-bottom: 0.75rem;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid var(--border-color);
     }
 
     /* Info Grid Layout inside Card */
@@ -183,14 +183,14 @@
     .info-item .label {
         font-size: 0.7rem;
         font-weight: 700;
-        color: #64748b;
+        color: var(--text-muted);
         text-transform: uppercase;
         letter-spacing: 0.08em;
     }
 
     .info-item .value {
         font-size: 0.95rem;
-        color: #1e293b;
+        color: var(--text-main);
         font-weight: 500;
     }
 
@@ -210,10 +210,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #f8fafc;
+        background-color: var(--bg-color);
         padding: 0.75rem 1rem;
         border-radius: 0.5rem;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border-color);
         transition: border-color 0.15s ease;
     }
 
@@ -222,7 +222,7 @@
     }
 
     .project-link {
-        color: #4f46e5;
+        color: #483d8b;
         font-weight: 600;
         text-decoration: none;
         font-size: 0.925rem;
@@ -230,16 +230,16 @@
 
     .project-link:hover {
         text-decoration: underline;
-        color: #4338ca;
+        color: #372f6b;
     }
 
     .project-status {
         font-size: 0.75rem;
-        color: #64748b;
-        background-color: #ffffff;
+        color: var(--text-muted);
+        background-color: var(--card-bg);
         padding: 0.2rem 0.6rem;
         border-radius: 9999px;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--border-color);
         font-weight: 500;
         white-space: nowrap;
     }
@@ -247,7 +247,7 @@
     .empty-list {
         background-color: transparent !important;
         border: none !important;
-        color: #64748b;
+        color: var(--text-muted);
         font-style: italic;
         padding: 0.75rem 0 !important;
         text-align: center;
@@ -260,8 +260,8 @@
         padding: 0.2rem 0.5rem;
         border-radius: 0.375rem;
         font-size: 0.85rem;
-        color: #475569;
-        border: 1px solid #cbd5e1;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
         font-weight: 600;
     }
 
@@ -289,7 +289,7 @@
     .badge-inactive {
         background-color: #f1f5f9;
         color: #475569;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border-color);
     }
 
     /* Action Footer */
@@ -311,15 +311,15 @@
     }
 
     .btn-secondary {
-        background-color: #ffffff;
-        color: #475569;
-        border: 1px solid #cbd5e1;
+        background-color: var(--card-bg);
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
 
     .btn-secondary:hover {
         background-color: #f1f5f9;
-        color: #0f172a;
+        color: var(--text-main);
         border-color: #94a3b8;
     }
 </style>

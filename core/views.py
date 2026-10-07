@@ -2,6 +2,8 @@ from django.shortcuts import render , get_object_or_404
 from .models import Employee, Project
 from django.db.models import Q
 from django.core.paginator import Paginator
+
+
 def home(request):
     employee_count = Employee.objects.count()
     active_employee_count = Employee.objects.filter(is_active=True).count()
