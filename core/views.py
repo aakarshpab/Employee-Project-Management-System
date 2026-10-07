@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Employee, Project
 from django.db.models import Q
-
+from django.core.paginator import Paginator
 def home(request):
     employee_count = Employee.objects.count()
     active_employee_count = Employee.objects.filter(is_active=True).count()
@@ -37,12 +37,17 @@ def employee_list(request):
     if department:
         employees = employees.filter(department=department)
 
+    paginator = Paginator(employees, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     departments = Employee.objects.values_list(
         'department', flat=True
     ).distinct()
 
     context = {
-        'employees': employees,
+        'employees': page_obj,  # page_obj replaces the standard queryset
+        'page_obj': page_obj,
         'departments': departments,
         'selected_department': department,
         'search_query': search_query,  # Pass this back so the input keeps its text

@@ -1,20 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}AakarsHub{% endblock %}</title>
+    <title>{% block title %}Proflow{% endblock %}</title>
+    
+    <!-- Custom Favicon Image Link -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-color: #f8fafc;
+            --primary-color: #3b4d61;     /* Sophisticated slate blue */
+            --primary-hover: #273645;
+            --bg-color: #f7f7f9;        /* Minimal warm off-white background */
             --sidebar-bg: #ffffff;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --sidebar-width: 220px;
+            --text-main: #2b3748;
+            --text-muted: #718096;
+            --border-color: #edf2f7;
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 76px;
+            --transition-speed: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -32,7 +39,7 @@
             min-height: 100vh;
         }
 
-        /* Compact Sidebar Styling */
+        /* Classy Collapsible Sidebar */
         aside.sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
@@ -44,39 +51,43 @@
             bottom: 0;
             left: 0;
             z-index: 100;
-            box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.02);
+            transition: width var(--transition-speed);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.015);
+        }
+
+        aside.sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
         }
 
         .sidebar-header {
-            padding: 1.1rem 1rem;
+            padding: 1.25rem 1rem;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            min-height: 73px;
         }
 
         .sidebar-brand {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.75rem;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: opacity var(--transition-speed);
         }
 
-        .sidebar-logo-badge {
-            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.9rem;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.35rem;
-            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        /* Custom Logo Image Styling */
+        .brand-logo-img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 0.375rem;
             flex-shrink: 0;
         }
 
         .sidebar-brand h1 {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.025em;
@@ -92,71 +103,132 @@
             color: var(--primary-color);
         }
 
+        /* Minimal Hamburger Toggle Button */
+        .sidebar-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .sidebar-toggle:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        .sidebar-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Navigation Links */
         .sidebar-nav {
             padding: 1rem 0.75rem;
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.35rem;
             flex: 1;
+            overflow-x: hidden;
         }
 
         .sidebar-nav a {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.85rem;
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.875rem;
-            padding: 0.6rem 0.75rem;
-            border-radius: 0.35rem;
+            font-size: 0.9rem;
+            padding: 0.7rem 0.85rem;
+            border-radius: 0.5rem;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .sidebar-nav a svg {
             flex-shrink: 0;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .sidebar-nav a span {
+            transition: opacity var(--transition-speed), visibility var(--transition-speed);
         }
 
         .sidebar-nav a:hover {
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
             color: var(--primary-color);
         }
 
         .sidebar-nav a.active {
-            background-color: #e0e7ff;
+            background-color: #f1f5f9;
             color: var(--primary-color);
             font-weight: 600;
         }
 
-        /* Sidebar Footer (Admin + Version) */
+        /* Collapsed State Adjustments */
+        aside.sidebar.collapsed .sidebar-brand h1,
+        aside.sidebar.collapsed .sidebar-nav a span,
+        aside.sidebar.collapsed .admin-link span,
+        aside.sidebar.collapsed .sidebar-version {
+            opacity: 0;
+            visibility: hidden;
+            width: 0;
+            display: none;
+        }
+
+        aside.sidebar.collapsed .sidebar-header {
+            justify-content: center;
+            padding: 1.25rem 0.5rem;
+        }
+
+        aside.sidebar.collapsed .sidebar-brand {
+            gap: 0;
+        }
+
+        aside.sidebar.collapsed .sidebar-nav a,
+        aside.sidebar.collapsed .admin-link {
+            justify-content: center;
+            padding: 0.7rem;
+        }
+
+        /* Sidebar Footer */
         .sidebar-footer {
-            padding: 0.75rem 1rem;
+            padding: 0.85rem 1rem;
             border-top: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            gap: 0.35rem;
-            background-color: #fafafa;
+            gap: 0.5rem;
+            background-color: #fafbfc;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .admin-link {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.85rem;
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.85rem;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.35rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: 0.5rem;
             transition: all 0.2s ease;
         }
 
         .admin-link svg {
             flex-shrink: 0;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
         }
 
         .admin-link:hover {
@@ -165,13 +237,13 @@
         }
 
         .sidebar-version {
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            padding-left: 0.75rem;
-            opacity: 0.8;
+            padding-left: 0.85rem;
+            opacity: 0.7;
         }
 
-        /* Main Content Layout */
+        /* Main Content Fluid Layout */
         main.main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -179,12 +251,17 @@
             background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
+            transition: margin-left var(--transition-speed);
         }
 
-        /* Responsive adjustments for smaller screens */
+        main.main-content.expanded {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* Responsive Mobile Behavior */
         @media (max-width: 768px) {
-            :root {
-                --sidebar-width: 64px;
+            aside.sidebar {
+                width: var(--sidebar-collapsed-width);
             }
             aside.sidebar .sidebar-brand h1,
             aside.sidebar .sidebar-version,
@@ -192,41 +269,41 @@
             aside.sidebar .admin-link span {
                 display: none;
             }
-            aside.sidebar .sidebar-logo-badge {
-                margin: 0 auto;
+            main.main-content {
+                margin-left: var(--sidebar-collapsed-width);
             }
-            aside.sidebar .sidebar-header {
-                padding: 1rem 0.5rem;
-                justify-content: center;
-            }
-            aside.sidebar .sidebar-nav a,
-            aside.sidebar .admin-link {
-                justify-content: center;
-                padding: 0.6rem;
+            .sidebar-toggle {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="appSidebar">
         <div class="sidebar-header">
             <div class="sidebar-brand">
-                <div class="sidebar-logo-badge">P</div>
+                <!-- Loads logo.png from core/static/images/ -->
+                <img src="{% static 'images/logo.png' %}" alt="Proflow Logo" class="brand-logo-img">
                 <h1><a href="{% url 'home' %}">Proflow</a></h1>
             </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
         
         <nav class="sidebar-nav">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                 <span>Home</span>
             </a>
-            <a href="{% url 'employee_list' %}">
+            <a href="{% url 'employee_list' %}" {% if 'employee' in request.resolver_match.url_name %}class="active"{% endif %}>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 <span>Employees</span>
             </a>
-            <a href="{% url 'project_list' %}">
+            <a href="{% url 'project_list' %}" {% if 'project' in request.resolver_match.url_name %}class="active"{% endif %}>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 <span>Projects</span>
             </a>
@@ -241,10 +318,20 @@
         </div>
     </aside>
 
-    <main class="main-content">
+    <main class="main-content" id="mainContent">
         {% block content %}
         {% endblock %}
     </main>
 
+    <script>
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('appSidebar');
+        const mainContent = document.getElementById('mainContent');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        });
+    </script>
 </body>
 </html>
