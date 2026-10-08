@@ -5,101 +5,122 @@ Home - Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="dashboard-container">
+<div class="proflow-clean-dashboard">
     
-    <!-- System Branding / Header -->
-    <div class="system-brand-header">
-        <div class="brand-badge">Proflow</div>
-        <div class="brand-titles">
-            <h1 class="system-title">Employee And Project Management System</h1>
-            <p class="system-subtitle">Streamline your workforce and project workflows in real time.</p>
+    <!-- Hero Greeting Banner -->
+    <div class="hero-welcome-banner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span> Proflow Executive Suite
+            </div>
+            <h1 class="hero-title">Hi, welcome to Proflow <span class="highlight-text">an Employee And Project Management System</span></h1>
+            <p class="hero-subtitle">Streamline your workforce and project workflows in real time.</p>
+        </div>
+        <div class="hero-live-pill">
+            <span class="live-pulse"></span>
+            Live Systems Active
         </div>
     </div>
 
-    <!-- Dashboard Main Header -->
-    <div class="dashboard-header-wrapper">
+    <!-- Section Header -->
+    <div class="section-header-wrapper">
         <div class="header-titles">
-            <h2>Dashboard Overview</h2>
-            <p class="header-desc">Monitor key performance metrics and operational summaries.</p>
-        </div>
-        <div class="header-actions">
-            <span class="live-indicator"><span class="pulse-dot"></span> Live Data Connected</span>
+            <h2>Performance Overview</h2>
+            <p class="header-desc">Real-time metrics tracking your organizational capacity and deliverables.</p>
         </div>
     </div>
 
     <!-- Stat Cards Grid -->
-    <div class="dashboard-grid">
-        <div class="stat-card">
-            <div class="stat-icon employees-icon">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+    <div class="proflow-stats-grid">
+        <!-- Total Employees -->
+        <div class="proflow-stat-card">
+            <div class="stat-header">
+                <span class="stat-label">Total Employees</span>
+                <div class="stat-icon-wrap employees-theme">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
             </div>
-            <div class="stat-content">
-                <span class="label">Total Employees</span>
-                <span class="value">{{ employee_count|default:"25" }}</span>
-                <span class="stat-sub">Registered workforce</span>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon active-icon">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <div class="stat-content">
-                <span class="label">Active Employees</span>
-                <span class="value">{{ active_employee_count|default:"25" }}</span>
-                <span class="stat-sub">Currently deployed</span>
+            <div class="stat-body">
+                <span class="stat-value">{{ employee_count|default:"25" }}</span>
+                <span class="stat-trend">Registered workforce directory</span>
             </div>
         </div>
 
-        <div class="stat-card">
-            <div class="stat-icon projects-icon">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        <!-- Active Employees -->
+        <div class="proflow-stat-card">
+            <div class="stat-header">
+                <span class="stat-label">Active Employees</span>
+                <div class="stat-icon-wrap active-theme">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
             </div>
-            <div class="stat-content">
-                <span class="label">Total Projects</span>
-                <span class="value">{{ project_count|default:"2" }}</span>
-                <span class="stat-sub">Managed portfolios</span>
+            <div class="stat-body">
+                <span class="stat-value">{{ active_employee_count|default:"25" }}</span>
+                <span class="stat-trend">Currently deployed resources</span>
             </div>
         </div>
 
-        <div class="stat-card">
-            <div class="stat-icon completed-icon">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        <!-- Total Projects -->
+        <div class="proflow-stat-card">
+            <div class="stat-header">
+                <span class="stat-label">Total Projects</span>
+                <div class="stat-icon-wrap projects-theme">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
             </div>
-            <div class="stat-content">
-                <span class="label">Completed Projects</span>
-                <span class="value">{{ completed_project_count|default:"0" }}</span>
-                <span class="stat-sub">Successfully delivered</span>
+            <div class="stat-body">
+                <span class="stat-value">{{ project_count|default:"2" }}</span>
+                <span class="stat-trend">Managed portfolios & tasks</span>
+            </div>
+        </div>
+
+        <!-- Completed Projects -->
+        <div class="proflow-stat-card">
+            <div class="stat-header">
+                <span class="stat-label">Completed Projects</span>
+                <div class="stat-icon-wrap completed-theme">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+            </div>
+            <div class="stat-body">
+                <span class="stat-value">{{ completed_project_count|default:"0" }}</span>
+                <span class="stat-trend">Successfully delivered milestones</span>
             </div>
         </div>
     </div>
 
-    <!-- Quick Actions & Management Hub Card -->
-    <div class="quick-hub-card">
-        <div class="hub-header">
-            <h3>Quick Navigation & Management Hub</h3>
-            <span class="panel-tag">Shortcuts</span>
+    <!-- Quick Management Hub -->
+    <div class="management-hub-section">
+        <div class="hub-title-area">
+            <h3>Quick Management Hub</h3>
+            <span class="hub-tag">Shortcuts</span>
         </div>
-        <p class="hub-desc">Access core modules of the Employee Project Management System instantly.</p>
-        
-        <div class="hub-actions-grid">
-            <a href="/projects/" class="hub-action-item">
-                <div class="hub-action-icon projects-bg">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        <p class="hub-subtitle">Jump directly into core management modules with one click.</p>
+
+        <div class="hub-grid">
+            <a href="/projects/" class="hub-card">
+                <div class="hub-icon-box project-card-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
-                <div>
+                <div class="hub-info">
                     <h4>View All Projects</h4>
-                    <p>Manage active portfolios, clients, and timelines</p>
+                    <p>Track active timelines, status reports, and assignments</p>
+                </div>
+                <div class="hub-arrow">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
-            <a href="/employees/" class="hub-action-item">
-                <div class="hub-action-icon employees-bg">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <a href="/employees/" class="hub-card">
+                <div class="hub-icon-box employee-card-icon">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>
-                <div>
+                <div class="hub-info">
                     <h4>Manage Employees</h4>
-                    <p>Inspect workforce directory, roles, and status</p>
+                    <p>Inspect workforce roster, roles, and deployment statuses</p>
+                </div>
+                <div class="hub-arrow">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
         </div>
@@ -108,261 +129,326 @@ Home - Dashboard
 </div>
 
 <style>
-    /* Fluid Full-Screen Layout Container */
-    .dashboard-container {
+    /* White Background with 15-20% Logo Color Concentration Theme */
+    :root {
+        --proflow-logo: #4b4096; /* Base logo color[cite: 2] */
+        --logo-tint-18: rgba(75, 64, 150, 0.18); /* ~18% concentration accent */
+        --logo-tint-10: rgba(75, 64, 150, 0.10); /* ~10% soft fill concentration */
+        --bg-white: #ffffff;
+        --card-surface: #ffffff;
+        --border-subtle: #eae7f2;
+        --text-main: #1e1b2e;
+        --text-muted: #6b667a;
+    }
+
+    .proflow-clean-dashboard {
         width: 100%;
-        max-width: 100%;
-        margin: 0;
+        max-width: 1400px;
+        margin: 0 auto;
         padding: 2.5rem;
         box-sizing: border-box;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg-white);
+        min-height: 100vh;
+        color: var(--text-main);
     }
 
-    /* System Brand Header (#483d8b Theme) */
-    .system-brand-header {
-        background: linear-gradient(135deg, #483d8b 0%, #30285c 100%);
-        border-radius: 0.75rem;
-        padding: 2.5rem;
-        color: #ffffff;
-        margin-bottom: 2rem;
+    /* Hero Welcome Banner */
+    .hero-welcome-banner {
+        background: linear-gradient(135deg, #4b4096 0%, #362e6d 100%);
+        border-radius: 1rem;
+        padding: 2.75rem;
+        margin-bottom: 2.5rem;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 1.5rem;
-        box-shadow: 0 10px 20px -3px rgba(72, 61, 139, 0.3);
+        box-shadow: 0 10px 25px -8px rgba(75, 64, 150, 0.2);
+        color: #ffffff;
     }
 
-    .brand-badge {
-        background-color: rgba(255, 255, 255, 0.15);
-        font-weight: 800;
-        font-size: 1.5rem;
-        letter-spacing: 0.1em;
-        padding: 0.85rem 1.25rem;
-        border-radius: 0.5rem;
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        color: #f3f0ff;
+        padding: 0.4rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 1.25rem;
         border: 1px solid rgba(255, 255, 255, 0.25);
     }
 
-    .system-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0 0 0.35rem 0;
-        letter-spacing: -0.025em;
-        color: #ffffff;
+    .pulse-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #d8b4fe;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #d8b4fe;
+        animation: pulse-glow 2s infinite;
     }
 
-    .system-subtitle {
+    @keyframes pulse-glow {
+        0% { transform: scale(0.95); opacity: 0.7; }
+        50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #d8b4fe; }
+        100% { transform: scale(0.95); opacity: 0.7; }
+    }
+
+    .hero-title {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.35;
+    }
+
+    .highlight-text {
+        color: #e9d5ff;
+        font-weight: 500;
+    }
+
+    .hero-subtitle {
         margin: 0;
         font-size: 1.05rem;
-        color: #e2dfed;
-        font-weight: 400;
+        color: #e8e2fc;
     }
 
-    /* Dashboard Main Header */
-    .dashboard-header-wrapper {
+    .hero-live-pill {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid #edf2f7;
-        padding-bottom: 1rem;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        padding: 0.6rem 1.15rem;
+        border-radius: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 600;
     }
 
-    .dashboard-header-wrapper h2 {
-        font-size: 1.45rem;
+    .live-pulse {
+        width: 8px;
+        height: 8px;
+        background-color: #34d399;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #34d399;
+        animation: pulse-glow 2s infinite;
+    }
+
+    /* Section Header */
+    .section-header-wrapper {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header-wrapper h2 {
+        font-size: 1.35rem;
         font-weight: 600;
-        margin: 0 0 0.2rem 0;
-        color: #2b3748;
+        color: var(--text-main);
+        margin: 0 0 0.25rem 0;
     }
 
     .header-desc {
         margin: 0;
         font-size: 0.9rem;
-        color: #718096;
-    }
-
-    .live-indicator {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #166534;
-        background-color: #dcfce7;
-        padding: 0.4rem 0.85rem;
-        border-radius: 9999px;
-        border: 1px solid #bbf7d0;
-    }
-
-    .pulse-dot {
-        width: 8px;
-        height: 8px;
-        background-color: #22c55e;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-        70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        color: var(--text-muted);
     }
 
     /* Stat Cards Grid */
-    .dashboard-grid {
+    .proflow-stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
 
-    .stat-card {
-        background-color: #ffffff;
-        border: 1px solid #edf2f7;
-        border-radius: 0.75rem;
+    .proflow-stat-card {
+        background: var(--card-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 1rem;
         padding: 1.75rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(75, 64, 150, 0.03);
+        position: relative;
+        overflow: hidden;
     }
 
-    .stat-card:hover {
+    .proflow-stat-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--proflow-logo);
+        opacity: 0.7;
+    }
+
+    .proflow-stat-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 15px -3px rgba(72, 61, 139, 0.1);
-        border-color: #a39bc9;
+        border-color: var(--logo-tint-18);
+        box-shadow: 0 8px 20px -6px rgba(75, 64, 150, 0.1);
     }
 
-    .stat-icon {
-        width: 54px;
-        height: 54px;
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .employees-icon { background-color: #f0eff7; color: #483d8b; }
-    .active-icon { background-color: #dcfce7; color: #166534; }
-    .projects-icon { background-color: #f0eff7; color: #483d8b; }
-    .completed-icon { background-color: #ffedd5; color: #c2410c; }
-
-    .stat-content .label {
-        font-size: 0.8rem;
-        color: #718096;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        display: block;
-        margin-bottom: 0.25rem;
-    }
-
-    .stat-content .value {
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #2b3748;
-        line-height: 1.1;
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-
-    .stat-sub {
-        font-size: 0.75rem;
-        color: #a0aec0;
-    }
-
-    /* Quick Hub Card */
-    .quick-hub-card {
-        background-color: #ffffff;
-        border: 1px solid #edf2f7;
-        border-radius: 0.75rem;
-        padding: 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-        margin-bottom: 2rem;
-    }
-
-    .hub-header {
+    .stat-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1.25rem;
     }
 
-    .quick-hub-card h3 {
+    .stat-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+    }
+
+    .stat-icon-wrap {
+        width: 38px;
+        height: 38px;
+        border-radius: 0.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .employees-theme { background: var(--logo-tint-10); color: var(--proflow-logo); border: 1px solid var(--logo-tint-18); }
+    .active-theme { background: rgba(16, 185, 129, 0.08); color: #059669; border: 1px solid rgba(16, 185, 129, 0.2); }
+    .projects-theme { background: var(--logo-tint-10); color: var(--proflow-logo); border: 1px solid var(--logo-tint-18); }
+    .completed-theme { background: rgba(245, 158, 11, 0.08); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.2); }
+
+    .stat-body .stat-value {
+        font-size: 2.35rem;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.1;
+        display: block;
+        margin-bottom: 0.35rem;
+    }
+
+    .stat-trend {
+        font-size: 0.775rem;
+        color: #9a94ab;
+    }
+
+    /* Management Hub Section */
+    .management-hub-section {
+        background: var(--card-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 1rem;
+        padding: 2.25rem;
+        box-shadow: 0 2px 8px rgba(75, 64, 150, 0.03);
+    }
+
+    .hub-title-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.3rem;
+    }
+
+    .management-hub-section h3 {
         margin: 0;
         font-size: 1.25rem;
         font-weight: 600;
-        color: #2b3748;
+        color: var(--text-main);
     }
 
-    .panel-tag {
-        font-size: 0.75rem;
+    .hub-tag {
+        font-size: 0.7rem;
         font-weight: 600;
-        color: #483d8b;
-        background-color: #f0eff7;
+        color: var(--proflow-logo);
+        background: var(--logo-tint-10);
         padding: 0.25rem 0.75rem;
         border-radius: 9999px;
         text-transform: uppercase;
+        border: 1px solid var(--logo-tint-18);
     }
 
-    .hub-desc {
+    .hub-subtitle {
         margin: 0 0 1.5rem 0;
         font-size: 0.9rem;
-        color: #718096;
+        color: var(--text-muted);
     }
 
-    .hub-actions-grid {
+    .hub-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.25rem;
     }
 
-    .hub-action-item {
+    .hub-card {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1.25rem;
         padding: 1.25rem 1.5rem;
-        background-color: #faf9fc;
-        border: 1px solid #f0eff7;
-        border-radius: 0.5rem;
+        background: #faf9fd;
+        border: 1px solid var(--border-subtle);
+        border-radius: 0.85rem;
         text-decoration: none;
         transition: all 0.2s ease;
     }
 
-    .hub-action-item:hover {
-        background-color: #ffffff;
-        border-color: #483d8b;
-        box-shadow: 0 4px 12px rgba(72, 61, 139, 0.1);
+    .hub-card:hover {
+        background: #ffffff;
+        border-color: var(--proflow-logo);
         transform: translateY(-2px);
+        box-shadow: 0 6px 18px -4px rgba(75, 64, 150, 0.1);
     }
 
-    .hub-action-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 0.375rem;
+    .hub-icon-box {
+        width: 46px;
+        height: 46px;
+        border-radius: 0.75rem;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
     }
 
-    .projects-bg { background-color: #f0eff7; color: #483d8b; }
-    .employees-bg { background-color: #f0eff7; color: #483d8b; }
+    .project-card-icon { background: var(--logo-tint-10); color: var(--proflow-logo); border: 1px solid var(--logo-tint-18); }
+    .employee-card-icon { background: var(--logo-tint-10); color: var(--proflow-logo); border: 1px solid var(--logo-tint-18); }
 
-    .hub-action-item h4 {
-        margin: 0 0 0.15rem 0;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #2b3748;
+    .hub-info {
+        flex: 1;
     }
 
-    .hub-action-item p {
+    .hub-info h4 {
+        margin: 0 0 0.2rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-main);
+    }
+
+    .hub-info p {
         margin: 0;
         font-size: 0.8rem;
-        color: #718096;
+        color: var(--text-muted);
+    }
+
+    .hub-arrow {
+        color: #b5b0c2;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .hub-card:hover .hub-arrow {
+        transform: translateX(4px);
+        color: var(--proflow-logo);
+    }
+
+    @media (max-width: 768px) {
+        .hero-welcome-banner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+        .proflow-clean-dashboard {
+            padding: 1rem;
+        }
     }
 </style>
 {% endblock %}
